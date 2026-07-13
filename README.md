@@ -33,3 +33,4 @@ Note:This Project was created on 2026 July 13th Because HOGLER lost Internet so 
 This project is built to demonstrate the devastating effects of unthrottled process forks in a Windows environment, showing why enterprise systems enforce strict user-space process limits and group policy constraints.
 
 Disclaimer: Run this strictly inside isolated virtual machines (VMs). The author is not responsible for any fried hardware or lost data.
+GG
