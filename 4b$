@@ -1,0 +1,57 @@
+@echo off
+:: Ensure the script runs with Admin privileges if needed, though basic taskkill works for user apps.
+title Emergency Task Killer
+color 0C
+cls
+
+echo ============================================================
+echo                    EMERGENCY TASK KILLER
+echo ============================================================
+echo.
+echo [1] Force-kill all "NOT RESPONDING" applications
+echo [2] Force-kill a specific process (e.g., chrome.exe, game.exe)
+echo [3] Exit
+echo.
+echo ============================================================
+echo.
+
+set /p choice="Select an option (1-3): "
+
+if "%choice%"=="1" goto KILL_FROZEN
+if "%choice%"=="2" goto KILL_SPECIFIC
+if "%choice%"=="3" goto EXIT_PROGRAM
+goto INVALID_CHOICE
+
+:KILL_FROZEN
+echo.
+echo Searching for and destroying frozen tasks...
+echo ------------------------------------------------------------
+taskkill /f /fi "status eq not responding"
+echo ------------------------------------------------------------
+echo.
+echo Process complete.
+pause
+exit
+
+:KILL_SPECIFIC
+echo.
+set /p proc="Enter the exact process name (e.g., discord.exe): "
+echo.
+echo Terminating %proc%...
+echo ------------------------------------------------------------
+taskkill /f /im %proc%
+echo ------------------------------------------------------------
+echo.
+echo Process complete.
+pause
+exit
+
+:INVALID_CHOICE
+echo.
+echo Invalid selection. Please run the script again and select 1, 2, or 3.
+echo.
+pause
+exit
+
+:EXIT_PROGRAM
+exit
